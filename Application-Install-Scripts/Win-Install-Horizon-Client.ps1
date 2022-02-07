@@ -1,9 +1,9 @@
 <# 
 .SYNOPSIS
-   Install Script for VMware Horizon Client 2106-8.3.0-18287501
+   Install Script for VMware Horizon Client 2111-8.4.0-18968194
 
 .DESCRIPTION
-   Downloads and installs the VMware Horizon Client version 2106-8.3.0-18287501, will also upgrade existing versions already installed
+   Downloads and installs the VMware Horizon Client version 2111-8.4.0-18968194, will also upgrade existing versions already installed
 
 .EXAMPLE
    PS C:\> .\Win-Install-Horizon-Client.ps1
@@ -20,11 +20,11 @@ $StartDTM = (Get-Date)
 $Path = $env:TEMP;
 $Vendor = "VMware"
 $Product = "Horizon Client"
-$PackageName = "VMware-Horizon-Client-2106-8.3.0-18287501"
-$Version = "8.3.0"
+$PackageName = "VMware-Horizon-Client-2111-8.4.0-18968194.exe"
+$Version = "8.4.0"
 $InstallerType = "exe"
 $Source = "$PackageName" + "." + "$InstallerType"
-$URL = "https://download3.vmware.com/software/view/viewclients/CART22FQ2/VMware-Horizon-Client-2106-8.3.0-18287501.exe"
+$URL = "https://download3.vmware.com/software/view/viewclients/CART22FH2/VMware-Horizon-Client-2111-8.4.0-18968194.exe"
 $LogPS = "${env:SystemRoot}" + "\Temp\$Vendor $Product $Version PS Wrapper.log"
 $UnattendedArgs = '/silent /norestart AUTO_UPDATE_ENABLED=0 ADDLOCAL=ALL VDM_SERVER=desktops.surrey.ac.uk INSTALL_SFB=1 DESKTOP_SHORTCUT=0'
 $ProgressPreference = 'SilentlyContinue'
