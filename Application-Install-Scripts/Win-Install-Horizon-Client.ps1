@@ -1,12 +1,12 @@
 <# 
 .SYNOPSIS
-   Install Script for Application Name Here.
+   Install Script for Vmware Horizon Client 2111-8.4.0-18968194.
 
 .DESCRIPTION
-   Downloads & Installs Application Name Here.
+   Downloads & Installs Vmware Horizon Client 2111-8.4.0-18968194.
 
 .EXAMPLE
-   PS C:\> .\Win10-Install-Template-Installer.ps1
+   PS C:\> .\Win-Install-Horizon-Client.ps1
    Save the file to your hard drive with a .PS1 extention and run the file from an elavated PowerShell prompt.
 
 .FUNCTIONALITY
@@ -16,7 +16,7 @@
 Clear-Host
 Write-Verbose "Setting Arguments" -Verbose
 $StartDTM = (Get-Date)
-$LogPS = "${env:SystemRoot}" + "\Temp\Application-Name.log"
+$LogPS = "${env:SystemRoot}" + "\Temp\HorizonClient-2111-8.4.0-18968194.log"
 
 Start-Transcript $LogPS
 
