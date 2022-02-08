@@ -1,0 +1,1 @@
+msiexec /x "{8EAD21F8-AD8B-4C6F-ABE6-92357CAB043E}" /q
