@@ -23,10 +23,10 @@ $Path = $env:TEMP;
 $Vendor = "Tableau Software"
 $Product = "Tableau Reader"
 $PackageName = "TableauReader"
-$Version = "64bit-2021-3-0"
+$Version = "64bit-2021-4-3"
 $InstallerType = "exe"
 $Source = "$PackageName" + "." + "$InstallerType"
-$URL = "https://downloads.tableau.com/tssoftware/TableauReader-64bit-2021-3-0.exe"
+$URL = "https://downloads.tableau.com/tssoftware/TableauReader-64bit-2021-4-3.exe"
 $LogPS = "${env:SystemRoot}" + "\Temp\$Vendor $Product $Version PS Wrapper.log"
 $UnattendedArgs = '/quiet /norestart ACCEPTEULA=1'
 $ProgressPreference = 'SilentlyContinue'
