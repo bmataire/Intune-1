@@ -1,12 +1,12 @@
 <# 
 .SYNOPSIS
-   Install Script for Application Name
+   Install Zoom 5.9.3.3169
 
 .DESCRIPTION
-   Explain what goes on here e.g. Downloads & Installs "Application Name Here".
+   Download & install Zoom 5.9.3.3169
 
 .EXAMPLE
-   PS C:\> .\Windows-Install-Application-Name.ps1
+   PS C:\> .\Win-Install-Zoom.ps1
    Save the file to your hard drive with a .PS1 extention and run the file from an elavated PowerShell prompt.
 
 .FUNCTIONALITY
