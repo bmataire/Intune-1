@@ -1,12 +1,12 @@
 <# 
 .SYNOPSIS
-   Install Script for Application Name
+   Install Script for Kinovea
 
 .DESCRIPTION
-   Explain what goes on here e.g. Downloads & Installs "Application Name Here".
+   Download & Install Kinovea 0.9.5x64
 
 .EXAMPLE
-   PS C:\> .\Windows-Install-Application-Name.ps1
+   PS C:\> .\Win-Install-Kinovea.ps1
    Save the file to your hard drive with a .PS1 extention and run the file from an elavated PowerShell prompt.
 
 .FUNCTIONALITY
@@ -53,7 +53,7 @@ Write-Verbose "Starting Installation of $Product $Version" -Verbose
 Write-Verbose "Customization" -Verbose
 
 ## Pause for 45 seconds to allow install to completed, This can be adjusted as needed.
-Start-Sleep -Seconds 45
+Start-Sleep -Seconds 25
 
 ## Cleanup Downloads
 Remove-Item $Path\$Source
