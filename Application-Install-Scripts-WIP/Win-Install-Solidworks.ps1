@@ -13,8 +13,6 @@
    PowerShell v1+
 #>
 
-&install.bat | Out-Null
-
 ## Perform install of Solidworks 2021 SP4 and dependencies.
 
 &C:\Temp\Solidworks2021\startswinstall.exe /install /now | Out-Null
