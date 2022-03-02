@@ -27,7 +27,7 @@ $InstallerType = "exe"
 $Source = "$PackageName" + "." + "$InstallerType"
 $URL = "https://www.kinovea.org/setup/kinovea.0.9.5/Kinovea-0.9.5-x64.exe"
 $LogPS = "${env:SystemRoot}" + "\Temp\ $Product $Version PS Wrapper.log"
-$UnattendedArgs = '/VERYSILENT /S'
+$UnattendedArgs = '/S'
 $ProgressPreference = 'SilentlyContinue'
 
 Start-Transcript $LogPS
