@@ -1,6 +1,6 @@
 <# 
 .SYNOPSIS
-   Install Script for Paraview
+   Install Script for Paraview.
 
 .DESCRIPTION
    Download and install ParaView 5.10.0.
