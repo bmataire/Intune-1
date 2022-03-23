@@ -183,5 +183,3 @@ If(!(test-path $path))
 }
 
 New-Item -ItemType "file" -Path "c:\logfiles\Refresh-Teams.txt"
-
-Restart-Computer
