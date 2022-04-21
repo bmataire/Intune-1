@@ -13,9 +13,9 @@
    PowerShell v1+
 #>
  
-## Perform install of Advantage and dependencies.
+## Perform install of Q-Pulse and dependencies.
 
-msiexec /i Q-Pulse.msi /qb ALLUSERS=NULL
+&.\setup.exe /S /v"/qn"
 
 ## Pause for 2 minutes to allow install to completed.
 Start-Sleep -Seconds 120
