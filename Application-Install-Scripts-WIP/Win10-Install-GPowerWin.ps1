@@ -13,6 +13,14 @@
    PowerShell v5+
 #>
 
+# Install VCRedist
+Install-PackageProvider -Name NuGet -Force
+Write-Output "Installing VC redist"
+Install-Module VcRedist -Force
+Import-Module VcRedist
+$VcList = Get-VcList | Get-VcRedist -Path "C:\Temp\VcRedist"
+$VcList | Install-VcRedist -Path C:\Temp\VcRedist
+
 $Product = "GPower"
 $Version = "3.1.9.7"
 $LogPS = "${env:SystemRoot}" + "\Temp\GPower-PS-Wrapper.log"
