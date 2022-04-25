@@ -1,9 +1,9 @@
 <# 
 .SYNOPSIS
-   Install Script for Azure Virtual Desktop (AVD/WVD) Version 1.2.2459.0_x64.
+   Install Script for Azure Virtual Desktop (AVD/WVD) Latest Version.
 
 .DESCRIPTION
-   Downloads & Install Script for Azure Virtual Desktop (AVD/WVD) Version 1.2.2459.0_x64.
+   Downloads & Install Script for Azure Virtual Desktop (AVD/WVD) Latest Version.
 
 .EXAMPLE
    PS C:\> .\Win-Install-AVD-Client.ps1
