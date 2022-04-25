@@ -22,13 +22,13 @@ Start-Transcript $LogPS
 
 # Download the Application Name
 Write-Verbose "Downloading Application Name" -Verbose
-Invoke-WebRequest https://www.example.com/application-name.exe -OutFile C:\temp\application-name.exe
+Invoke-WebRequest https://go.microsoft.com/fwlink/?linkid=2068602 -OutFile C:\temp\AVD-Client.msi
 
 # Install Application Name
 Write-Verbose "Starting Installation of Application Name" -Verbose
 $params = @{
-             FilePath     = "C:\temp\Application.exe"
-             ArgumentList = "/VERYSILENT /S"
+             FilePath     = "C:\temp\AVD-Client.msi"
+             ArgumentList = '/qn ALLUSERS="2" MSIINSTALLPERUSER="1"'
              WindowStyle  = "Hidden"
              PassThru     = $True
              Verbose      = $True

@@ -28,7 +28,7 @@ $InstallerType = "msi"
 $Source = "$PackageName" + "." + "$InstallerType"
 $URL = "https://go.microsoft.com/fwlink/?linkid=2068602"
 $LogPS = "${env:SystemRoot}" + "\Temp\$Vendor $Product $Version PS Wrapper.log"
-$UnattendedArgs = 'ALLUSERS="2" MSIINSTALLPERUSER="1" /qn'
+$UnattendedArgs = '/qn ALLUSERS="2" MSIINSTALLPERUSER="1"'
 $ProgressPreference = 'SilentlyContinue'
 
 Start-Transcript $LogPS
