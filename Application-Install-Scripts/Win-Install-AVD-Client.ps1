@@ -23,7 +23,7 @@ $Path = $env:TEMP;
 $Vendor = "Microsoft"
 $Product = "Azure Virtual Desktop Client"
 $PackageName = "RemoteDesktop"
-$Version = "1.2.2459.0_x64"
+$Version = "lsr"
 $InstallerType = "msi"
 $Source = "$PackageName" + "." + "$InstallerType"
 $URL = "https://go.microsoft.com/fwlink/?linkid=2068602"
