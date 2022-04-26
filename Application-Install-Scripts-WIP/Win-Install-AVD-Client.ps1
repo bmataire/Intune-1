@@ -50,7 +50,7 @@ If (!(Test-Path -Path $Source)) {
          }
 
 Write-Verbose "Installing $Vendor $Product $Version" -Verbose
-& msiexec.exe /i "$PackageName.$InstallerType" /qn ALLUSERS=1
+& msiexec.exe /i "$PackageName.$InstallerType" $UnattendedArgs ##/qn ALLUSERS=1
 
 ## Disable User Update Notification.
 $Path = "HKLM:\Software\Microsoft\MSRDC\Policies"
