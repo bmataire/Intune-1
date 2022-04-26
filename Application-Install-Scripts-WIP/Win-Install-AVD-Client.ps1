@@ -4,6 +4,7 @@
 
 .DESCRIPTION
    Downloads & Install Script for Azure Virtual Desktop (AVD/WVD) Latest Version.
+   This is a Machine Based install.
 
 .EXAMPLE
    PS C:\> .\Win-Install-AVD-Client.ps1
@@ -51,7 +52,7 @@ If (!(Test-Path -Path $Source)) {
 Write-Verbose "Installing $Vendor $Product $Version" -Verbose
 & msiexec.exe /i "$PackageName.$InstallerType" /qn ALLUSERS=1
 
-## Disable Update notifications
+## Disable User Update Notification.
 $Path = "HKLM:\Software\Microsoft\MSRDC\Policies"
 $Name = "AutomaticUpdates"
 $Type = "DWORD"
