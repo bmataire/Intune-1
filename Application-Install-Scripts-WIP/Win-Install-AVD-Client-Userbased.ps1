@@ -28,7 +28,6 @@ $InstallerType = "msi"
 $Source = "$PackageName" + "." + "$InstallerType"
 $URL = "https://go.microsoft.com/fwlink/?linkid=2068602"
 $LogPS = "${env:SystemRoot}" + "\Temp\$Vendor $Product $Version PS Wrapper.log"
-$UnattendedArgs = '/qn ALLUSERS="2" MSIINSTALLPERUSER="1"'
 $ProgressPreference = 'SilentlyContinue'
 
 Start-Transcript $LogPS
@@ -49,7 +48,7 @@ If (!(Test-Path -Path $Source)) {
          }
 
 Write-Verbose "Starting Installation of $Vendor $Product $Version" -Verbose
-(Start-Process "$PackageName.$InstallerType" $UnattendedArgs -Wait -Passthru).ExitCode
+& msiexec.exe /i "$PackageName.$InstallerType" /qn ALLUSERS="2" MSIINSTALLPERUSER="1"
 
 Write-Verbose "Customization" -Verbose
 
