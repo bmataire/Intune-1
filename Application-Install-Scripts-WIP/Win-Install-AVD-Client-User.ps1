@@ -3,10 +3,10 @@
    Install Script for Azure Virtual Desktop (AVD/WVD) Latest Version.
 
 .DESCRIPTION
-   Downloads & Install Script for Azure Virtual Desktop (AVD/WVD) Latest Version.
+   Downloads & Install the latest Azure Virtual Desktop (AVD/WVD) (Per User Installation).
 
 .EXAMPLE
-   PS C:\> .\Win-Install-AVD-Client.ps1
+   PS C:\> .\Win-Install-AVD-Client-User.ps1
    Save the file to your hard drive with a .PS1 extention and run the file from an elavated PowerShell prompt.
 
 .FUNCTIONALITY
@@ -48,7 +48,7 @@ If (!(Test-Path -Path $Source)) {
          }
 
 Write-Verbose "Starting Installation of $Vendor $Product $Version" -Verbose
-& msiexec.exe /i "$PackageName.$InstallerType" /qn ALLUSERS="2" MSIINSTALLPERUSER="1"
+& msiexec.exe /i "$PackageName.$InstallerType" /qn ALLUSERS=2 MSIINSTALLPERUSER=1
 
 Write-Verbose "Customization" -Verbose
 
