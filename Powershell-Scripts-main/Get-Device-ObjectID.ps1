@@ -1,4 +1,19 @@
-Connect-AzureAD
+<# 
+.SYNOPSIS
+   Script that can be used to obtain ObjectID's from Intune without using graph.
+
+.DESCRIPTION
+   Obtain ObjectID's from Intune, -Search string can be used to target devices or be removed if you wish to search entire inventory.
+
+.EXAMPLE
+   PS C:\> .\Get-Device-ObjectID.ps1
+   Save the file to your hard drive with a .PS1 extention and run the file from an elavated PowerShell prompt.
+   
+.FUNCTIONALITY
+   PowerShell v1+
+#>
+
+Connect-AzureAD ## You will be prompted to enter your service account details
 $PathCsv = "C:\temp\DeviceList.csv"
 $deviceList = Get-AzureADDevice -All $True -Searchstring "uws6"| Select-Object @(
     'DisplayName'
