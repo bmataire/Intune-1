@@ -3,7 +3,7 @@
    Script that can be used to obtain ObjectID's from Intune without using graph.
 
 .DESCRIPTION
-   Obtain ObjectID's from Intune, -Search string can be used to target devices or be removed if you wish to search entire inventory.
+   Obtain ObjectID's from Azure AD, -Searchstring can be used to target devices or be removed if you wish to search entire inventory.
 
 .EXAMPLE
    PS C:\> .\Get-Device-ObjectID.ps1
