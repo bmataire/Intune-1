@@ -17,7 +17,7 @@
 # Uninstall Current Version Of Global Protect & Remove Program File Entry.
 $uninstall32 = Get-ChildItem "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall" | ForEach-Object { Get-ItemProperty $_.PSPath } | Where-Object { $_ -match "GlobalProtect" } | Select-Object UninstallString
 $uninstall64 = Get-ChildItem "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" | ForEach-Object { Get-ItemProperty $_.PSPath } | Where-Object { $_ -match "GlobalProtect" } | Select-Object UninstallString
-$install = ".\GlobalProtect64-5.2.11.msi"
+$install = "GlobalProtect64-5.2.11.msi"
     if ($uninstall64) {
         $uninstall64 = $uninstall64.UninstallString -Replace "msiexec.exe","" -Replace "/I","" -Replace "/X",""
         $uninstall64 = $uninstall64.Trim()
@@ -39,7 +39,7 @@ start-process "msiexec.exe" -arg "/i $install /qn /norestart CONNECTMETHOD=on-de
 Set-ItemProperty -Path "HKLM:\Software\Palo Alto Networks\GlobalProtect\PanSetup" -Name "Portal" -Value "vpn.surrey.ac.uk"
 
 # Remove Installation Files.
-# Remove-Item -path C:\temp\GlobalProtect64-5.2.10.msi -force -recurse -Verbose -ErrorAction SilentlyContinue
+# Remove-Item -path C:\temp\GlobalProtect64-5.2.11.msi -force -recurse -Verbose -ErrorAction SilentlyContinue
 
 # Create Detection Method.
 $path = "C:\logfiles"
