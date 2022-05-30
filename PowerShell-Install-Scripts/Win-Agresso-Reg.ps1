@@ -40,7 +40,7 @@ $Auth = "Authenticator"
 $AuthValue = "AgressoAuthenticator"
 
 $Username = "UserName"
-$Username2 = "%username%"
+$Username2 = $env:UserName
 $Client = "Client"
 $Client2 = "SY"
 
@@ -48,14 +48,14 @@ $currentUser = Get-CurrentUser
 $currentUserSID = Get-UserSID $currentUser
 $userRegistryPath = "Registry::HKEY_USERS\$($currentUserSID)\Software\UNIT4\ReportEngine\Login\WebService"
 New-Item -Path $userRegistryPath -ItemType RegistryKey -Force | Out-Null
-New-ItemProperty -Path $registryPath -Name $name -Value $value -Type String -Force | Out-Null
-New-ItemProperty -Path $registryPath -Name $Name2 -Value $value2 -Type String -Force | Out-Null
-New-ItemProperty -Path $registryPath -Name $Auth -Value $AuthValue -Type String -Force | Out-Null
+New-ItemProperty -Path $userRegistryPath -Name $name -Value $value -Type String -Force | Out-Null
+New-ItemProperty -Path $userRegistryPath -Name $Name2 -Value $value2 -Type String -Force | Out-Null
+New-ItemProperty -Path $userRegistryPath -Name $Auth -Value $AuthValue -Type String -Force | Out-Null
 
 $userRegistryPath1 = "Registry::HKEY_USERS\$($currentUserSID)\Software\UNIT4\ReportEngine\Login\WebService\AgressoAuthenticator"
 New-Item -Path $userRegistryPath1 -ItemType RegistryKey -Force | Out-Null
-New-ItemProperty -Path $registryPath2 -Name $Username -Value $Username2 -Type String -Force | Out-Null
-New-ItemProperty -Path $registryPath2 -Name $Client -Value $Client2 -Type String -Force | Out-Null
+New-ItemProperty -Path $userRegistryPath1 -Name $Username -Value $Username2 -Type String -Force | Out-Null
+New-ItemProperty -Path $userRegistryPath1 -Name $Client -Value $Client2 -Type String -Force | Out-Null
 
 # Create detection method. 
 $path = "C:\logfiles"
