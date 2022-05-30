@@ -40,7 +40,7 @@ $Auth = "Authenticator"
 $AuthValue = "AgressoAuthenticator"
 
 $Username = "UserName"
-$Username2 = $env:UserName
+$Username2 = [System.Environment]::UserName
 $Client = "Client"
 $Client2 = "SY"
 
