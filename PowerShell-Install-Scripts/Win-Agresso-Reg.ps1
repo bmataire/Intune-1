@@ -40,7 +40,7 @@ $Auth = "Authenticator"
 $AuthValue = "AgressoAuthenticator"
 
 $Username = "UserName"
-$Username2 = [System.Environment]::UserName
+$Username2 = (Get-CimInstance Win32_Process -Filter 'name = "explorer.exe"' | Invoke-CimMethod -MethodName getowner).User
 $Client = "Client"
 $Client2 = "SY"
 
