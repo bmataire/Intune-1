@@ -8,3 +8,12 @@ Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $installer
 $git_install_inf = "<install inf file>"
 $install_args = "/SP- /VERYSILENT /SUPPRESSMSGBOXES /NOCANCEL /NORESTART /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /LOADINF=""$git_install_inf"""
 Start-Process -FilePath $installer -ArgumentList $install_args -Wait
+
+## Create Detection Method. 
+$logfilespath = "C:\logfiles"
+If(!(test-path $logfilespath))
+{
+      New-Item -ItemType Directory -Force -Path $logfilespath
+}
+
+New-Item -ItemType "file" -Path "c:\logfiles\git-update150622.txt"
