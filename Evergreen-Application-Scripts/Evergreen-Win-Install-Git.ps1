@@ -26,7 +26,7 @@ $latestRelease = ($r.Content | ConvertFrom-Json | Where-Object { $_.prerelease -
 $latestVersion = $latestRelease.tag_name
 
 # Array of releases and downloaded
-$releases = $latestRelease.assets | Where-Object { $_.name -like "Git*" } | `
+$releases = $latestRelease.assets | Where-Object { $_.name -like "*64-bit.exe" } | `
     Select-Object name, browser_download_url
 
 Clear-Host

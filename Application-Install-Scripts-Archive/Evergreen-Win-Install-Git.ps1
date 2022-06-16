@@ -72,7 +72,7 @@ If(!(test-path $logfilespath))
       New-Item -ItemType Directory -Force -Path $logfilespath
 }
 
-New-Item -ItemType "file" -Path "c:\logfiles\$Product-Patch.txt"
+New-Item -ItemType "file" -Path "c:\logfiles\$Product-LSR.txt"
 
 Write-Verbose "Stop logging" -Verbose
 $EndDTM = (Get-Date)
