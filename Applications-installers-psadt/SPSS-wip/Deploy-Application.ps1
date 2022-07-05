@@ -67,7 +67,7 @@ Try {
 	## Variables: Application
 	[string]$appVendor = 'IBM'
 	[string]$appName = 'SPSS'
-	[string]$appVersion = '28.0.1'
+	[string]$appVersion = '28.0.1.1'
 	[string]$appArch = 'x64'
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
