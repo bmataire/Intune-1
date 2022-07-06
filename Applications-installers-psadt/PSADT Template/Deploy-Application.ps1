@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 	This script performs the installation or uninstallation of an application(s).
 	# LICENSE #
@@ -20,7 +20,7 @@
 .PARAMETER TerminalServerMode
 	Changes to "user install mode" and back to "user execute mode" for installing/uninstalling applications for Remote Destkop Session Hosts/Citrix servers.
 .PARAMETER DisableLogging
-	Disables logging to file for the script. Default is: $false.
+	Disables logging to file for the script. Default is: $false.change
 .EXAMPLE
     powershell.exe -Command "& { & '.\Deploy-Application.ps1' -DeployMode 'Silent'; Exit $LastExitCode }"
 .EXAMPLE
@@ -37,6 +37,10 @@
 .LINK
 	http://psappdeploytoolkit.com
 #>
+
+## Suppress PSScriptAnalyzer errors for not using declared variables during AppVeyor build
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments", "", Justification="Suppress AppVeyor errors on unused variables below")]
+
 [CmdletBinding()]
 Param (
 	[Parameter(Mandatory=$false)]
@@ -55,21 +59,21 @@ Param (
 
 Try {
 	## Set the script execution policy for this process
-	Try { Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Scope 'Process' -Force -ErrorAction 'Stop' } Catch {}
+	Try { Set-ExecutionPolicy -ExecutionPolicy 'ByPass' -Scope 'Process' -Force -ErrorAction 'Stop' } Catch { Write-Error "Failed to set the execution policy to Bypass for this process." }
 
 	##*===============================================
 	##* VARIABLE DECLARATION
 	##*===============================================
 	## Variables: Application
-	[string]$appVendor = ''
-	[string]$appName = ''
-	[string]$appVersion = ''
-	[string]$appArch = ''
+	[string]$appVendor = 'Muse Group'
+	[string]$appName = 'Audacity'
+	[string]$appVersion = '3.1.3'
+	[string]$appArch = 'x64'
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
-	[string]$appScriptVersion = '1.0.0'
-	[string]$appScriptDate = 'XX/XX/20XX'
-	[string]$appScriptAuthor = '<author name>'
+	[string]$appScriptVersion = '3.1.3'
+	[string]$appScriptDate = '04/07/2022'
+	[string]$appScriptAuthor = 'Nick Jenkins'
 	##*===============================================
 	## Variables: Install Titles (Only set here to override defaults set by the toolkit)
 	[string]$installName = ''
@@ -83,8 +87,8 @@ Try {
 
 	## Variables: Script
 	[string]$deployAppScriptFriendlyName = 'Deploy Application'
-	[version]$deployAppScriptVersion = [version]'3.8.4'
-	[string]$deployAppScriptDate = '26/01/2021'
+	[version]$deployAppScriptVersion = [version]'3.8.3'
+	[string]$deployAppScriptDate = '30/09/2020'
 	[hashtable]$deployAppScriptParameters = $psBoundParameters
 
 	## Variables: Environment
@@ -116,13 +120,18 @@ Try {
 		##*===============================================
 		[string]$installPhase = 'Pre-Installation'
 
-		## Show Welcome Message, close Internet Explorer if required, allow up to 3 deferrals, verify there is enough disk space to complete the install, and persist the prompt
-		Show-InstallationWelcome -CloseApps 'iexplore' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt
+		## Show Welcome Message, close Internet Explorer if required, verify there is enough disk space to complete the install, and persist the prompt
+		Show-InstallationWelcome -CloseApps 'audacity' -CheckDiskSpace -PersistPrompt
 
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
 
 		## <Perform Pre-Installation tasks here>
+		If (Test-Path -path "C:\Program Files (x86)\Audacity\Audacity.exe") {
+		Execute-Process -Path "C:\Program Files (x86)\Audacity\unins000.exe" -Parameters "/silent" -WindowStyle "Hidden" -PassThru }
+		If (Test-Path -path "C:\Program Files\Audacity\Audacity.exe") {
+		Execute-Process -Path "C:\Program Files\Audacity\unins000.exe" -Parameters "/silent" -WindowStyle "Hidden" -PassThru }
+
 
 
 		##*===============================================
@@ -137,6 +146,8 @@ Try {
 		}
 
 		## <Perform Installation tasks here>
+		$exitCode = Execute-Process -Path "$dirFiles\audacity-win-3.1.3-64bit.exe" -Parameters "/verysilent /suppressmsgboxes /closeapplications" -WindowStyle "Hidden" -PassThru
+		If (($exitCode.ExitCode -ne "0") -and ($mainExitCode -ne "3010")) { $mainExitCode = $exitCode.ExitCode }
 
 
 		##*===============================================
@@ -145,9 +156,10 @@ Try {
 		[string]$installPhase = 'Post-Installation'
 
 		## <Perform Post-Installation tasks here>
+		Remove-File -Path "$envCommonDesktop\Audacity.lnk"
 
 		## Display a message at the end of the install
-		If (-not $useDefaultMsi) { Show-InstallationPrompt -Message 'You can customize text to appear at the end of an install or remove it completely for unattended installations.' -ButtonRightText 'OK' -Icon Information -NoWait }
+		If (-not $useDefaultMsi) {}
 	}
 	ElseIf ($deploymentType -ieq 'Uninstall')
 	{
@@ -156,13 +168,14 @@ Try {
 		##*===============================================
 		[string]$installPhase = 'Pre-Uninstallation'
 
-		## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-		Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60
+		## Show Welcome Message, close Audacity with a 60 second countdown before automatically closing
+		Show-InstallationWelcome -CloseApps 'audacity' -CloseAppsCountdown 60
 
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
 
 		## <Perform Pre-Uninstallation tasks here>
+
 
 
 		##*===============================================
@@ -178,6 +191,11 @@ Try {
 
 		# <Perform Uninstallation tasks here>
 
+		If (Test-Path -path "C:\Program Files (x86)\Audacity") {
+			$exitCode = Execute-Process -Path "C:\Program Files (x86)\Audacity\unins000.exe" -Parameters "/silent" -WindowStyle "Hidden" -PassThru }
+		If (Test-Path -path "C:\Program Files\Audacity") {
+			$exitCode = Execute-Process -Path "C:\Program Files\Audacity\unins000.exe" -Parameters "/silent" -WindowStyle "Hidden" -PassThru }
+		If (($exitCode.ExitCode -ne "0") -and ($mainExitCode -ne "3010")) { $mainExitCode = $exitCode.ExitCode }
 
 		##*===============================================
 		##* POST-UNINSTALLATION
@@ -185,6 +203,9 @@ Try {
 		[string]$installPhase = 'Post-Uninstallation'
 
 		## <Perform Post-Uninstallation tasks here>
+
+		Remove-File -Path "$envProgramFiles\Audacity"
+		Remove-File -Path "$envProgramFilesx86\Audacity"
 
 
 	}
@@ -220,7 +241,7 @@ Try {
 		## <Perform Post-Repair tasks here>
 
 
-    }
+	}
 	##*===============================================
 	##* END SCRIPT BODY
 	##*===============================================
