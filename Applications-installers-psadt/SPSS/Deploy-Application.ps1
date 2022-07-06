@@ -149,8 +149,8 @@ Try {
 		}
 
 		## <Perform Installation tasks here>
-		# $installParameters = "LICENSETYPE=`"Network`" LSHOST=`"vmwas32.winad.msudenver.edu`""
-		$exitCode = Execute-MSI -Action "Install" -Path "IBM SPSS Statistics.msi" -Transform "1033.MST" -Parameters "REBOOT=ReallySupress /QN INSTALLPYTHON=`"1`" AUTHCODE="'f05dc614ec7235e4520a'" COMPANYNAME=`"University of Surrey`" $installParameters" -SecureParameters -PassThru
+		$installParameters = "AUTHCODE=`"f05dc614ec7235e4520a`""
+		$exitCode = Execute-MSI -Action "Install" -Path "IBM SPSS Statistics.msi" -Transform "1033.MST" -Parameters "REBOOT=ReallySupress /QN /L*v logfile.txt INSTALLPYTHON=`"1`" COMPANYNAME=`"University of Surrey`" $installParameters" -SecureParameters -PassThru
 
 		##*===============================================
 		##* POST-INSTALLATION
