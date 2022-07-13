@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Install-Sysmon downloads the Sysmon executables archive and installs Sysmon64.exe
+Download the Sysmon executables archive and installs Sysmon64.exe
 with a configuration file.
 
 .DESCRIPTION
@@ -10,7 +10,7 @@ PowerShell script or module to install Sysmon with configuration
 The path to the working directory.  Default is user Documents.
 
 .EXAMPLE
-Install-Sysmon -path C:\Users\example\Desktop
+Win-Install-Sysmon -path C:\Users\example\Desktop
 #>
 
 [CmdletBinding()]
@@ -35,26 +35,22 @@ Write-Host "Location set $path"
 
 Write-Host "Retrieving Sysmon..."
 
+#Download Sysmon
 Invoke-WebRequest -Uri https://download.sysinternals.com/files/Sysmon.zip -Outfile Sysmon.zip
-
 Write-Host "Sysmon Retrived"
-
 Write-Host "Unzip Sysmon..."
 
+#Unzip
 Expand-Archive Sysmon.zip
-
 Set-Location $path\Sysmon
-
 Write-Host "Unzip Complete."
 
+#Download Config File
 Write-Host "Retrieving Configuration File..."
-
 Invoke-WebRequest -Uri https://insert-path-to-config-file-here/sysmonconfig-export.xml -Outfile sysmonconfig-export.xml
-
 Write-Host "Configuration File Retrieved."
 
+#Install Sysmon
 Write-Host "Installing Sysmon..."
-
 .\sysmon64.exe -accepteula -i sysmonconfig-export.xml
-
 Write-Host "Sysmon Installed!"
