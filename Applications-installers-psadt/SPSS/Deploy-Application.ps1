@@ -159,6 +159,8 @@ Try {
 
 		## <Perform Post-Installation tasks here>
 
+		## Insert firewall changes here
+
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {}
 	}
