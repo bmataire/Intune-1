@@ -149,7 +149,7 @@ Try {
 		}
 
 		## <Perform Installation tasks here>
-		$installParameters = "AUTHCODE=`"f05dc614ec7235e4520a`""
+		$installParameters = "AUTHCODE=`"7c03cfb2f4db32e7c6d7`""
 		$exitCode = Execute-MSI -Action "Install" -Path "IBM SPSS Statistics.msi" -Transform "1033.MST" -Parameters "REBOOT=ReallySupress /QN /L*v logfile.txt INSTALLPYTHON=`"1`" COMPANYNAME=`"University of Surrey`" $installParameters" -SecureParameters -PassThru
 
 		##*===============================================
