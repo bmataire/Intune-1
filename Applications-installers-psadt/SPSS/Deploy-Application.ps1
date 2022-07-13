@@ -160,6 +160,9 @@ Try {
 		## <Perform Post-Installation tasks here>
 
 		## Insert firewall changes here
+		netsh advfirewall firewall delete rule name=all program="C:\program files\ibm\spss statistics\stats.exe"
+		netsh advfirewall firewall add rule name="IBM SPSS Statistics 28.0.1.1" profile=public,domain dir=in action=allow protocol=TCP program="C:\program files\ibm\spss statistics\stats.exe"
+		netsh advfirewall firewall add rule name="IBM SPSS Statistics 28.0.1.1" profile=public,domain dir=in action=allow protocol=UDP program="C:\program files\ibm\spss statistics\stats.exe"
 
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {}
