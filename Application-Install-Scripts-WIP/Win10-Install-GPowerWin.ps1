@@ -14,6 +14,7 @@
 #>
 
 # Install VCRedist
+New-Item -Path 'C:\Temp\VcRedist' -ItemType Directory
 Install-PackageProvider -Name NuGet -Force
 Write-Output "Installing VC redist"
 Install-Module VcRedist -Force
@@ -36,7 +37,7 @@ Expand-Archive C:\temp\GPowerWin.zip -DestinationPath C:\temp\GPowerWin
 Write-Verbose "Starting Installation of $Product $Version" -Verbose
 $params = @{
              FilePath     = "C:\temp\GPowerWin\GPower_3.1.9.7\GPowerSetup.msi"
-             ArgumentList = "/qb"
+             ArgumentList = "/qn /norestart"
              WindowStyle  = "Hidden"
              Wait         = $True
              PassThru     = $True
@@ -56,4 +57,5 @@ New-Item -ItemType "file" -Path "c:\logfiles\GPowerWin-3.1.9.7.txt"
 ## Cleanup installer files.
 
 Remove-Item C:\temp\GPowerWin* -force -recurse -ErrorAction SilentlyContinue -Verbose
+Remove-Item C:\Temp\VcRedist* -force -recurse -ErrorAction SilentlyContinue -Verbose
 Stop-Transcript
