@@ -63,7 +63,7 @@ Try {
 	## Variables: Application
 	[string]$appVendor = 'Unit4'
 	[string]$appName = 'Batch Input Formatter'
-	[string]$appVersion = '9'
+	[string]$appVersion = '9.2.9'
 	[string]$appArch = 'x64'
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
@@ -145,7 +145,7 @@ Try {
 		[string]$installPhase = 'Post-Installation'
 
 		## <Perform Post-Installation tasks here>
-		Set-RegistryKey -Key HKEY_LOCAL_MACHINE\SOFTWARE\SCCM_Installations -Name 'Bif-x64' -Value '"Installed"'-Type String
+		Set-RegistryKey -Key HKEY_LOCAL_MACHINE\SOFTWARE\SCCM_Installations -Name 'Bif-x64-9.2.9' -Value '"Installed"'-Type String
 		
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {}
@@ -158,7 +158,7 @@ Try {
 		[string]$installPhase = 'Pre-Uninstallation'
 
 		## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-		Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60
+		Show-InstallationWelcome -CloseApps 'excel' -CloseAppsCountdown 60
 
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
@@ -178,7 +178,6 @@ Try {
 		}
 
 		# <Perform Uninstallation tasks here>
-
 
 		##*===============================================
 		##* POST-UNINSTALLATION
