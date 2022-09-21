@@ -136,7 +136,7 @@ Try {
 		}
 
 		## <Perform Installation tasks here>
-		$exitCode = Execute-MSI -Action 'Install' -Path "$dirFiles\AgrBIF9Setup.msi" -Parameters "/qn /norestart" -PassThru
+		$exitCode = Execute-Process -Path "$dirFiles\setup.exe" -Parameters "/qn /norestart" -WindowStyle "Hidden" -PassThru
 		If (($exitCode.ExitCode -ne "0") -and ($mainExitCode -ne "3010")) { $mainExitCode = $exitCode.ExitCode }
 
 		##*===============================================
